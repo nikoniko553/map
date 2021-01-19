@@ -1,0 +1,47 @@
+<mt:Ignore><$mt:EntryBody regex_replace="/\[\[page2\]\][\s\S]*/",""$></mt:Ignore>
+
+<main class="content">
+    <div class="content-wrap">
+        <div class="entry">
+            
+            <h3 class="entry__title"><$mt:EntryTitle$><br>
+            <mt:If tag="CFSubtitle"><$mt:CFSubtitle$></mt:If>
+            </h3>
+            <div class="entry__date"><$mt:EntryDate format="%Y.%m.%d"$></div>
+
+            <ul id="socialbutton">
+            <li class="tw"><a href="https://twitter.com/intent/tweet?text=<$mt:EntryTitle encode_url="1"$>&url=https://www.shinmai.co.jp<$mt:BlogRelativeURL$><$mt:EntryDate format="%Y"$>/<$mt:EntryDate format="%m"$>/<$mt:EntryDate format="%d%H%M"$>-1.html"><i class="fab fa-twitter fa-lg"></i><div>Twitterで<span>ツイート</span></div></a></li>
+                                    <li class="fb"><a href="https://www.facebook.com/share.php?u=https://www.shinmai.co.jp<$mt:BlogRelativeURL$><$mt:EntryDate format="%Y"$>/<$mt:EntryDate format="%m"$>/<$mt:EntryDate format="%d%H%M"$>-1.html" rel="nofollow" target="_blank"><i class="fab fa-facebook fa-lg"></i><div>Facebookで<span>シェア</span></div></a></li>
+            </ul>
+
+            <script>
+                var test = "<$mt:EntryBody strip_linefeeds="1"$>";
+                console.log(test);
+                var a="<$mt:EntryBody regex_replace="/<p>\[\[page2\]\]<\/p>[\s\S]*/","" strip_linefeeds="1"$>";
+                console.log(a);
+
+                a = a.replace(/<p>\[\[H(.*?)H\]\]<br \/>/g,'<h4 class="entry__subheading">$1</h4><p>');
+                document.write(a);
+                //console.log(a);
+            </script>
+    
+        </div>
+    </div>
+</main>
+
+
+
+<mt:SetVarTemplate name="all_content"><$mt:EntryBody></mt:SetVarTemplate>
+<mt:Ignore>
+    <div class="pagi-nation">
+        <a class="active" href="<$mt:BlogRelativeURL$><$mt:EntryDate format="%Y"$>/<$mt:EntryDate format="%m"$>/<$mt:EntryDate format="%d%H%M"$>-1.html">1</a>
+        <mt:If name="all_content" like="[[page2]]">
+        <a href="<$mt:BlogRelativeURL$><$mt:EntryDate format="%Y"$>/<$mt:EntryDate format="%m"$>/<$mt:EntryDate format="%d%H%M"$>-2.html">2</a>
+        </mt:If>
+        <mt:If name="all_content" like="[[page3]]">
+        <a href="<$mt:BlogRelativeURL$><$mt:EntryDate format="%Y"$>/<$mt:EntryDate format="%m"$>/<$mt:EntryDate format="%d%H%M"$>-3.html">3</a>
+        </mt:If>
+    </div>
+    <a href="<$mt:BlogRelativeURL$>" class="list-btn"><span>ARCHIVE</span></a>
+    
+</mt:Ignore>
