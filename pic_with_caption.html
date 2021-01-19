@@ -4,11 +4,29 @@
             <mt:If tag="CFimage01">
                 <mt:CFimage01Asset><img src="<$mt:AssetURL$>"></mt:CFimage01Asset>
             </mt:If>
-    
         </div>
     </div>
+
+    <mt:If tag="CFimage01">
+        <mt:CFimage01Asset>
+            <mt:SetVarBlock name="image_width"><$mt:AssetProperty property="image_width"$></mt:SetVarBlock>
+            <mt:SetVarBlock name="image_height"><$mt:AssetProperty property="image_height"$></mt:SetVarBlock>
+            <mt:SetVar name="aspect" value="$image_width">
+            <mt:SetVar name="aspect" value="$image_height" op="/">
+            <mt:If name="aspect" gt="1">
+                yoko
+            <mt:Else>
+                tate
+            </mt:if>
+        </mt:CFimage01Asset>
+
+    
     <figcaption style="width:70%;margin: 0 auto; color:#717171">
-        あああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-        あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
+        
+            
+        </mt:If>
+        <mt:If tag="cfCaption01">
+            <mt:cfCaption01>
+        </mt:If>
     </figcaption>
 </figure>
