@@ -1,31 +1,44 @@
+<mt:If tag="CFimage01">
+    <mt:CFimage01Asset>
+        <mt:SetVarBlock name="image_width"><$mt:AssetProperty property="image_width"$></mt:SetVarBlock>
+        <mt:SetVarBlock name="image_height"><$mt:AssetProperty property="image_height"$></mt:SetVarBlock>
+        <mt:SetVar name="aspect" value="$image_width">
+        <mt:SetVar name="aspect" value="$image_height" op="/">
+        <mt:If name="aspect" gt="1">
+            <mt:SetVar name="cap_width" value="95">
+            <mt:Ignore>
+                <mt:SetVar name="img_width" value="100">
+            </mt:Ignore>
+            <mt:SetVar name="img_height" value="$image_height">
+            <mt:SetVar name="img_height" value="$image_width" op="/">
+            <mt:SetVar name="img_height" value="100" op="*">
+        <mt:Else>
+            <mt:SetVar name="cap_width" value="$aspect">
+            <mt:SetVar name="cap_width" value="100" op="*">
+            <mt:SetVar name="cap_width" value="5" op="-">
+            <mt:Ignore>
+                <mt:SetVar name="img_width" value="$aspect">
+                <mt:SetVar name="img_width" value="100" op="*">
+                <mt:SetVar name="img_height" value="100">
+            </mt:Ignore>
+            <mt:SetVar name="img_height" value="100">
+        </mt:if>
+    </mt:CFimage01Asset>
+</mt:If>
+
 <figure style="margin: 0">
     <div class="entry__photo3">
+        <div style="content:''; display: block; padding-top:<mt:Var name="img_height">%"></div>
         <div class="entry__photo3-wrap">
             <mt:If tag="CFimage01">
-                <mt:CFimage01Asset><img src="<$mt:AssetURL$>"></mt:CFimage01Asset>
+                <mt:CFimage01Asset><img src="<$mt:AssetURL$>" style="width: 100%; height: 100%;"></mt:CFimage01Asset>
             </mt:If>
         </div>
     </div>
 
-    <mt:If tag="CFimage01">
-        <mt:CFimage01Asset>
-            <mt:SetVarBlock name="image_width"><$mt:AssetProperty property="image_width"$></mt:SetVarBlock>
-            <mt:SetVarBlock name="image_height"><$mt:AssetProperty property="image_height"$></mt:SetVarBlock>
-            <mt:SetVar name="aspect" value="$image_width">
-            <mt:SetVar name="aspect" value="$image_height" op="/">
-            <mt:If name="aspect" gt="1">
-                yoko
-            <mt:Else>
-                tate
-            </mt:if>
-        </mt:CFimage01Asset>
-
     
-    <figcaption style="width:70%;margin: 0 auto; color:#717171">
-        
-            
-        </mt:If>
-        <mt:If tag="cfCaption01">
+    <figcaption style="width:<mt:Var name="cap_width">%; margin: 0 auto; color:#717171">
+         <mt:If tag="cfCaption01">
             <mt:cfCaption01>
         </mt:If>
     </figcaption>
